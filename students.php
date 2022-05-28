@@ -15,10 +15,23 @@ function getStudents(): array
 function sortStudents(array $students): array
 {
     // edit the code below
-    return [];
+    usort($students, function ($a_student, $b_student) {
+        return $a_student['averageScore'] < $b_student['averageScore'];
+    });
+
+    $position = 1;
+
+    foreach ($students as $key => $value) {
+        if ($key > 0 && $value['averageScore'] < $students[$key - 1]['averageScore']) {
+            $position += 1;
+        }
+        // $position += 1;
+        $students[$key]['position'] = $position;
+    }
+
+    return $students;
 }
 
-function findStudentByPosition(array $students, int $position): array
 {
     // edit the code below
     return [];
@@ -26,6 +39,6 @@ function findStudentByPosition(array $students, int $position): array
 
 $students = getStudents();
 
-//print_r(sortStudents($students));
+print_r(sortStudents($students));
 
 print_r(findStudentByPosition($students, 3));
