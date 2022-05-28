@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Set of PHP functions that fetches students from an endpoint, sorts them and returns a student at a given position
  *
@@ -32,13 +33,19 @@ function sortStudents(array $students): array
     return $students;
 }
 
+function findStudentByPosition(array $students, int $position): array
 {
     // edit the code below
-    return [];
+
+    // print_r($students);
+
+    return $students[array_search($position, array_column($students, 'position'))];
 }
 
 $students = getStudents();
 
-print_r(sortStudents($students));
+$sortedStudents = sortStudents($students);
 
-print_r(findStudentByPosition($students, 3));
+print_r(findStudentByPosition($sortedStudents, 1));
+print_r(findStudentByPosition($sortedStudents, 2));
+print_r(findStudentByPosition($sortedStudents, 12));
